@@ -1,0 +1,98 @@
+entry-pipeline:
+  workers: 4
+  delay: "100"
+  source:
+    otel_trace_source:
+      ssl: false
+      port: 21890
+  prepper:
+    - otel_trace_raw_prepper:
+  sink:
+    - stdout:
+
+# entry-pipeline:
+#   workers: 4
+#   delay: "100"
+#   source:
+#     otel_trace_source:
+#       ssl: false
+#   sink:
+#     - stdout:
+#     - pipeline:
+#         name: "raw-pipeline"
+#     - pipeline:
+#         name: "service-map-pipeline"
+# raw-pipeline:
+#   workers: 4
+#   source:
+#     pipeline:
+#       name: "entry-pipeline"
+#   prepper:
+#     - otel_trace_raw_prepper:
+#   sink:
+#     - stdout:
+# service-map-pipeline:
+#   workers: 4
+#   delay: "100"
+#   source:
+#     pipeline:
+#       name: "entry-pipeline"
+#   prepper:
+#     - service_map_stateful:
+#   sink:
+#     - stdout:
+
+# sample-pipeline:
+#   delay: "1000"
+#   source:
+#     otel_trace_source:
+#       ssl: false
+#       # sslKeyCertChainFile: "config/demo-data-prepper.crt"
+#       # sslKeyFile: "config/demo-data-prepper.key"
+#   sink:
+#     - elasticsearch:
+#         hosts: ["https://odfe-node1:9200" ]
+#         cert: "config/root-ca.pem"
+#         username: "admin"
+#         password: "admin"
+#         trace_analytics_raw: true
+
+# entry-pipeline:
+#   delay: "100"
+#   source:
+#     otel_trace_source:
+#       ssl: false
+#       # sslKeyCertChainFile: "config/demo-data-prepper.crt"
+#       # sslKeyFile: "config/demo-data-prepper.key"
+#   sink:
+#     - pipeline:
+#         name: "raw-pipeline"
+#     - pipeline:
+#         name: "service-map-pipeline"
+# raw-pipeline:
+#   source:
+#     pipeline:
+#       name: "entry-pipeline"
+#   prepper:
+#     - otel_trace_raw_prepper:
+#   sink:
+#     - elasticsearch:
+#         hosts: ["https://odfe-node1:9200" ]
+#         cert: "config/root-ca.pem"
+#         username: "admin"
+#         password: "admin"
+#         trace_analytics_raw: true
+# service-map-pipeline:
+#   delay: "100"
+#   source:
+#     pipeline:
+#       name: "entry-pipeline"
+#   prepper:
+#     - service_map_stateful:
+#   sink:
+#     - elasticsearch:
+#         hosts: ["https://odfe-node1:9200"]
+#         cert: "config/root-ca.pem"
+#         username: "admin"
+#         password: "admin"
+#         trace_analytics_service_map: true
