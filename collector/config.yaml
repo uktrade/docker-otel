@@ -12,7 +12,7 @@ exporters:
   logging:
     logLevel: debug
   otlp:
-    endpoint: data-prepper:21890
+    endpoint: localhost:21890
     insecure: true
 
 service:
