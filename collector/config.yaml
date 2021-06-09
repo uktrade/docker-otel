@@ -8,6 +8,9 @@ receivers:
 processors:
   batch:
 
+extensions:
+  health_check:
+
 exporters:
   logging:
     logLevel: debug
@@ -16,7 +19,7 @@ exporters:
     insecure: true
 
 service:
-
+  extensions: [health_check]
   pipelines:
 
     traces:
