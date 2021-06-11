@@ -25,5 +25,4 @@ service:
     traces:
       receivers: [otlp]
       processors: [batch]
-      # exporters: [logging, otlp]
-      exporters: [logging]
+      exporters: [logging, otlp]
