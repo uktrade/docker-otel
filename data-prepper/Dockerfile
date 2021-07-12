@@ -1,4 +1,5 @@
-FROM amazon/opendistro-for-elasticsearch-data-prepper:latest
+#FROM amazon/opendistro-for-elasticsearch-data-prepper:latest
+FROM amazon/opendistro-for-elasticsearch-data-prepper:0.8.0-beta
 
 # add envsubst
 RUN yum install -y gettext
