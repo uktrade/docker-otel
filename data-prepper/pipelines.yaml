@@ -1,15 +1,3 @@
-#entry-pipeline:
-#  workers: 4
-#  delay: "100"
-#  source:
-#    otel_trace_source:
-#      ssl: false
-#      port: 21890
-#  prepper:
-#    - otel_trace_raw_prepper:
-#  sink:
-#    - stdout:
-
 entry-pipeline:
   delay: "100"
   source:
